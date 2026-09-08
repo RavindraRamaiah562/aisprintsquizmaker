@@ -1,2 +1,5 @@
 # Load .env.development* files when running `wrangler dev`
 NEXTJS_ENV=development
+
+# Used to sign session cookies (generate a random string for local dev)
+SESSION_SECRET=

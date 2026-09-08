@@ -11,9 +11,9 @@ the problem, the primary user, and the current state. Two or three sentences.
 Keep it current. An out-of-date description here misleads every future conversation.
 -->
 
-This is an unmodified AISprints starter. No application features have been built yet.
-The technical PRD in `ai-workspace/` is the source of truth for what is being built and
-for the current phase of work.
+This is a quiz platform with **user registration, login, and logout** complete (teacher/student roles).
+Teachers can create and manage **MCQ test banks** at `/teacher/test-banks`. Students can browse **question banks** read-only at `/student/test-banks` (correct answers are hidden).
+The technical PRD in `ai-workspace/` is the source of truth.
 
 ## Stack
 
@@ -24,8 +24,9 @@ for the current phase of work.
 - **TypeScript** in strict mode
 - **Wrangler** for Cloudflare configuration, secrets, and deployment
 
-No database, authentication, testing framework, or AI SDK is installed yet. Do not
-write code that imports one without adding it first and telling the user.
+No database or authentication is configured in production yet. **Vitest** is installed for
+TDD (see `ai-workspace/USER_REG_LOGIN_LOGOUT_PRD.md`). Do not write code that imports a
+database or auth dependency without adding it first and telling the user.
 
 ## Layout
 
@@ -49,6 +50,7 @@ Import through the `@/` alias, which maps to `src/`.
 | `npm run preview` | Build and run on the local **Workers** runtime |
 | `npm run build` | Production build |
 | `npm run lint` | ESLint |
+| `npm run test` | Vitest unit tests (TDD; see PRD) |
 | `npm run deploy` | Build and deploy to Cloudflare |
 | `npm run cf-typegen` | Regenerate `cloudflare-env.d.ts` after changing bindings |
 
@@ -57,6 +59,9 @@ anything runtime-sensitive with `npm run preview`.
 
 ## Working agreements
 
+- **Do not commit.** Never run `git commit`, `git add` for staging, or `git push` unless the
+  user explicitly asks in that conversation. The user reviews each phase and handles version
+  control themselves.
 - **Do not deploy.** Never run `npm run deploy` unless explicitly asked.
 - **Do not touch the remote database.** Migrations may be applied locally only.
 - **Ask before adding a dependency.** This is a teaching repository; an unexplained

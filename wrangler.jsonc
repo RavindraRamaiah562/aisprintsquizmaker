@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "aisprints-starter",
+	"name": "rndquizmaker",
 	"main": ".open-next/worker.js",
 	"compatibility_date": "2026-07-01",
 	"compatibility_flags": [
@@ -17,6 +17,16 @@
 	},
 	"observability": {
 		"enabled": true
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "rndquizmaker-db",
+			"database_id": "00000000-0000-0000-0000-000000000001"
+		}
+	],
+	"vars": {
+		"SESSION_SECRET": "local-dev-only-change-me"
 	}
 	/**
 	 * Smart Placement

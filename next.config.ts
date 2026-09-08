@@ -6,6 +6,12 @@ const nextConfig: NextConfig = {
 	turbopack: {
 		root: __dirname,
 	},
+	// Allow cross-origin dev requests when using 127.0.0.1 or Workers preview (8787).
+	allowedDevOrigins: [
+		"127.0.0.1:3000",
+		"127.0.0.1:8787",
+		"localhost:8787",
+	],
 };
 
 export default nextConfig;
