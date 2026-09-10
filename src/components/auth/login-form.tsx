@@ -38,13 +38,23 @@ export function LoginForm() {
 				body: JSON.stringify(payload),
 			});
 
-			const data = (await response.json()) as {
+			const data = (await response.json().catch(() => ({}))) as {
 				message?: string;
-				user: { role: "teacher" | "student" };
+				user?: { role: "teacher" | "student" };
 			};
 
 			if (!response.ok) {
-				setError(data.message ?? "Invalid username or password");
+				setError(
+					data.message ??
+						(response.status >= 500
+							? "Sign-in is temporarily unavailable. Please try again."
+							: "Invalid username or password"),
+				);
+				return;
+			}
+
+			if (!data.user) {
+				setError("Sign-in failed. Please try again.");
 				return;
 			}
 
